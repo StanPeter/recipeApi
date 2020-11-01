@@ -1,5 +1,5 @@
-FROM python:3.8-alpine
-MAINTAINER Stan05 (single person from Czechia)
+FROM python:3.7-alpine
+MAINTAINER Stan05
 
 ENV PYTHONUNBUFFERED 1
 
