@@ -7,10 +7,21 @@ class UserManager(BaseUserManager):
 
     def create_user(self, email, password=None, **extra_fields):
         """Creates and saves a new user"""
+        if not email:
+            raise ValueError('Missing email for the user')
         user = self.model(  # self.model same as create a new User model
-            email=email, **extra_fields)
+            email=self.normalize_email(email), **extra_fields)
         user.set_password(password)  # this helping func. encrypts password
         user.save(using=self._db)    # required for multiple databases
+
+        return user
+
+    def create_superuser(self, email, password):
+        """Creates and saves a new superuser"""
+        user = self.create_user(email, password)
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
 
         return user
 
