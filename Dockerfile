@@ -1,5 +1,6 @@
 FROM python:3.7-alpine
-MAINTAINER Stan05
+# MAINTAINER Stan05
+LABEL maintainer="Stan05"
 
 ENV PYTHONUNBUFFERED 1
 
